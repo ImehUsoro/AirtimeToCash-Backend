@@ -1,0 +1,798 @@
+openapi: 3.0.0
+info:
+  title: Airtime-to-cash Live Project
+  description: An app that converts surplus call-credit to cash with ease and speed.
+  contact:
+    name: POD G
+    url: https://airtimetocashpodg.netlify.app/
+    email: airtimetocashpodg@gmail.com
+  version: '1.0'
+servers:
+- url: https://airtimetocashpodg.herokuapp.com/
+  variables: {}
+- url: https://airtimetocashpodg.herokuapp.com/
+  description: Call credit to cash conversion app.
+  variables: {}
+paths:
+  /users/register:
+    post:
+      tags:
+      - User
+      summary: Register User
+      description: Register a new user
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterUserRequest'
+              - example:
+                  firstName: Imeh
+                  lastName: Usoro
+                  username: imeh_usoro
+                  email: imeusoro@gmail.com
+                  password: '1111'
+                  confirmPassword: '1111'
+                  phoneNumber: '09093215077'
+            example:
+              firstName: Imeh
+              lastName: Usoro
+              username: imeh_usoro
+              email: imeusoro@gmail.com
+              password: '1111'
+              confirmPassword: '1111'
+              phoneNumber: '09093215077'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/verify/{token}:
+    parameters:
+      - in: path
+        name: token
+        schema:
+          type: string
+        required: true
+        description: The verification Token
+    get:
+      tags:
+      - User
+      summary: Verify User
+      description: Send email and verify a user
+      operationId: VerifyUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/login:
+    post:
+      tags:
+      - User
+      summary: Login a User
+      description: Login in a registered user
+      operationId: LoginaUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginaUserRequest'
+              - example:
+                  username: imeh_usoro
+                  password: '1111'
+            example:
+              username: imeh_usoro
+              password: '1111'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/forgotpassword:
+    post:
+      tags:
+      - User
+      summary: Forgot password
+      description: Forgot password? This endpoint helps users to create new passwords
+      operationId: Forgotpassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ForgotpasswordRequest'
+              - example:
+                  email: nelugo@gmail.com
+            example:
+              email: nelugo@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/change-password/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The User ID
+    patch:
+      tags:
+      - User
+      summary: Change password
+      description: Change passwords
+      operationId: Changepassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ChangepasswordRequest'
+              - example:
+                  password: '1234'
+                  confirmPassword: '1234'
+            example:
+              password: '1234'
+              confirmPassword: '1234'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/update/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The User ID
+    patch:
+      tags:
+      - User
+      summary: Update a User
+      description: Update a user profile
+      operationId: UpdateaUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateaUserRequest'
+              - example:
+                  firstName: Nancy
+            example:
+              firstName: Nancy
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/single-user/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The User ID
+    get:
+      tags:
+      - User
+      summary: Get a Single User and banks
+      description: Get single users and their banks
+      operationId: GetaSingleUserandbanks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/getAllUsers:
+    get:
+      tags:
+      - User
+      summary: Get all Users and Banks
+      description: Get all users and their banks
+      operationId: GetallUsersandBanks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/createAdmin:
+    post:
+      tags:
+      - Admin
+      summary: Create an Admin
+      description: Create a new admin
+      operationId: CreateanAdmin
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateanAdminRequest'
+              - example:
+                  firstName: Uchenna
+                  lastName: Neloji
+                  username: ugouche
+                  email: nelugochi@gmail.com
+                  password: '1111'
+                  confirmPassword: '1111'
+                  phoneNumber: '09643267022'
+            example:
+              firstName: Uchenna
+              lastName: Neloji
+              username: ugouche
+              email: nelugochi@gmail.com
+              password: '1111'
+              confirmPassword: '1111'
+              phoneNumber: '09643267022'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/getOTP:
+    patch:
+      tags:
+      - Admin
+      summary: Get OTP
+      description: Get OTP
+      operationId: GetOTP
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          text/plain:
+            schema:
+              type: object
+              example: {}
+            example: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/creditWallet:
+    patch:
+      tags:
+      - Admin
+      summary: Credit Wallet of User
+      description: Credit users wallet after confirmation
+      operationId: CreditWalletofUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreditWalletofUserRequest'
+              - example:
+                  otp: '914974'
+                  amountTransferred: 1785
+                  email: michelleuzonna@gmail.com
+                  transactionID: e8b7a2f9-2a38-4453-af0f-f65272e4de84
+            example:
+              otp: '914974'
+              amountTransferred: 1785
+              email: michelleuzonna@gmail.com
+              transactionID: e8b7a2f9-2a38-4453-af0f-f65272e4de84
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /api/add-bank:
+    post:
+      tags:
+      - Bank
+      summary: Add Bank
+      description: Add a new bank
+      operationId: AddBank
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AddBankRequest'
+              - example:
+                  acctName: Chidimma Ugo
+                  bankName: GTB
+                  acctNumber: '0990078910'
+            example:
+              acctName: Chidimma Ugo
+              bankName: GTB
+              acctNumber: '0990078910'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /api/delete-bank/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The Bank ID
+    delete:
+      tags:
+      - Bank
+      summary: Delete Bank
+      description: Delete bank.
+      operationId: DeleteBank
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /api/add-transaction:
+    post:
+      tags:
+      - Transaction
+      summary: Add Transaction
+      description: Add a new transaction
+      operationId: AddTransaction
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AddTransactionRequest'
+              - example:
+                  network: MTN
+                  phoneNumber: '09093215077'
+                  amountToSell: 5000
+                  destinationPhoneNumber: '08023254166'
+            example:
+              network: MTN
+              phoneNumber: '09093215077'
+              amountToSell: 5000
+              destinationPhoneNumber: '08023254166'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /api/getOneTransaction/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The Transaction ID
+    get:
+      tags:
+      - Transaction
+      summary: Get Single Transaction
+      description: Get a single transaction
+      operationId: GetSingleTransaction
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /api/getUserTransactions:
+    get:
+      tags:
+      - Transaction
+      summary: Get Single User Transaction
+      description: Get all single user transaction
+      operationId: GetSingleUserTransaction
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /api/getTransactions:
+    get:
+      tags:
+      - Transaction
+      summary: Get All Transactions
+      description: Get all existing transactions
+      operationId: GetAllTransactions
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /api/cancelTransaction/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The Transaction ID
+    patch:
+      tags:
+      - Transaction
+      summary: Cancel Single Transaction
+      description: Cancel single transactions
+      operationId: CancelSingleTransaction
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /api/getUserWithdrawals:
+    get:
+      tags:
+      - Transaction
+      summary: Get  Single User Withdrawals
+      description: Get single user transaction
+      operationId: GetSingleUserWithdrawals
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /api/withdraw:
+    post:
+      tags:
+      - Withdrawal
+      summary: Add Withdrawal
+      description: Withdraw cash. Cash-out time!
+      operationId: AddWithdrawal
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AddWithdrawalRequest'
+              - example:
+                  amount: 500.4443
+                  accountNumber: '6172896060'
+                  bankName: Fidelity Bank
+                  email: imeusoro@rocketmail.com
+                  password: '1111'
+            example:
+              amount: 500.4443
+              accountNumber: '6172896060'
+              bankName: Fidelity Bank
+              email: imeusoro@rocketmail.com
+              password: '1111'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /api/getAllWithdrawals:
+    get:
+      tags:
+      - Withdrawal
+      summary: Get all Withdrawals
+      description: Get all withdrawal history
+      operationId: GetallWithdrawals
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+      - firstName
+      - lastName
+      - username
+      - email
+      - password
+      - confirmPassword
+      - phoneNumber
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string
+        phoneNumber:
+          type: string
+      example:
+        firstName: Imeh
+        lastName: Usoro
+        username: imeh_usoro
+        email: imeusoro@gmail.com
+        password: '1111'
+        confirmPassword: '1111'
+        phoneNumber: '09093215077'
+    LoginaUserRequest:
+      title: LoginaUserRequest
+      required:
+      - username
+      - password
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      example:
+        username: imeh_usoro
+        password: '1111'
+    ForgotpasswordRequest:
+      title: ForgotpasswordRequest
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          type: string
+      example:
+        email: nelugo@gmail.com
+    ChangepasswordRequest:
+      title: ChangepasswordRequest
+      required:
+      - password
+      - confirmPassword
+      type: object
+      properties:
+        password:
+          type: string
+        confirmPassword:
+          type: string
+      example:
+        password: '1234'
+        confirmPassword: '1234'
+    CreateanAdminRequest:
+      title: CreateanAdminRequest
+      required:
+      - firstName
+      - lastName
+      - username
+      - email
+      - password
+      - confirmPassword
+      - phoneNumber
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string
+        phoneNumber:
+          type: string
+      example:
+        firstName: Uchenna
+        lastName: Neloji
+        username: ugouche
+        email: nelugochi@gmail.com
+        password: '1111'
+        confirmPassword: '1111'
+        phoneNumber: '09643267022'
+    UpdateaUserRequest:
+      title: UpdateaUserRequest
+      required:
+      - firstName
+      type: object
+      properties:
+        firstName:
+          type: string
+      example:
+        firstName: Nancy
+    CreditWalletofUserRequest:
+      title: CreditWalletofUserRequest
+      required:
+      - otp
+      - amountTransferred
+      - email
+      - transactionID
+      type: object
+      properties:
+        otp:
+          type: string
+        amountTransferred:
+          type: integer
+          format: int32
+        email:
+          type: string
+        transactionID:
+          type: string
+      example:
+        otp: '914974'
+        amountTransferred: 1785
+        email: michelleuzonna@gmail.com
+        transactionID: e8b7a2f9-2a38-4453-af0f-f65272e4de84
+    AddBankRequest:
+      title: AddBankRequest
+      required:
+      - acctName
+      - bankName
+      - acctNumber
+      type: object
+      properties:
+        acctName:
+          type: string
+        bankName:
+          type: string
+        acctNumber:
+          type: string
+      example:
+        acctName: Chidimma Ugo
+        bankName: GTB
+        acctNumber: '0990078910'
+    DeleteBankRequest:
+      title: DeleteBankRequest
+      required:
+      - acctName
+      - bankName
+      - acctNumber
+      type: object
+      properties:
+        acctName:
+          type: string
+        bankName:
+          type: string
+        acctNumber:
+          type: string
+      example:
+        acctName: Chidimma Ugo
+        bankName: GTB
+        acctNumber: '0990078910'
+    AddTransactionRequest:
+      title: AddTransactionRequest
+      required:
+      - network
+      - phoneNumber
+      - amountToSell
+      - destinationPhoneNumber
+      type: object
+      properties:
+        network:
+          type: string
+        phoneNumber:
+          type: string
+        amountToSell:
+          type: integer
+          format: int32
+        destinationPhoneNumber:
+          type: string
+      example:
+        network: MTN
+        phoneNumber: '09093215077'
+        amountToSell: 5000
+        destinationPhoneNumber: '08023254166'
+    AddWithdrawalRequest:
+      title: AddWithdrawalRequest
+      required:
+      - amount
+      - accountNumber
+      - bankName
+      - email
+      - password
+      type: object
+      properties:
+        amount:
+          type: number
+        accountNumber:
+          type: string
+        bankName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        amount: 500.4443
+        accountNumber: '6172896060'
+        bankName: Fidelity Bank
+        email: imeusoro@rocketmail.com
+        password: '1111'
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: User
+  description: ''
+- name: Admin
+  description: ''
+- name: Bank
+  description: ''
+- name: Transaction
+  description: ''
+- name: Withdrawal
+  description: ''

@@ -1,0 +1,6 @@
+package.json
+yarn.lock
+dist/*
+/node_modules/
+jest.config.ts
+.github/*

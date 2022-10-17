@@ -1,0 +1,7 @@
+- Sort email is required problem - sorted?
+- hash otp in database
+- Send admin the created username and password
+- Testing that ci is working
+
+
+    // "test": "jest --config jest.config.ts __test__/app.test.ts",
