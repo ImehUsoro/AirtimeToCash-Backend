@@ -462,7 +462,8 @@ async function creditUserWallet(req, res) {
             walletBalance: fixedBalance,
         }));
         return res.status(200).json({
-            message: `Successfully credited ${record.firstName} ${record.lastName} with N${amountTransferred * 0.7}`,
+            // eslint-disable-next-line max-len
+            message: `Successfully credited ${record.firstName} ${record.lastName} with N${(amountTransferred * 0.7).toFixed(2)}`,
             updatedWalletBalance,
             record,
             updatedTransaction,
