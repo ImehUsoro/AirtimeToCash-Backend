@@ -1,3 +1,2 @@
 - hash otp in database
 - Send admin the created username and password
-- correct twofixed message on credit user
