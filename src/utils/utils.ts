@@ -10,8 +10,9 @@ export const createUserSchema = Joi.object()
     avatar: Joi.string(),
     isVerified: Joi.boolean(),
     password: Joi.string()
-      .regex(/^[a-zA-Z0-9]{3,30}$/)
-      .required(),
+      // .regex(/^[a-zA-Z0-9]{3,30}$/)
+      .required()
+      .min(4),
     phoneNumber: Joi.string()
       .length(11)
       .pattern(/^[0-9]+$/)
