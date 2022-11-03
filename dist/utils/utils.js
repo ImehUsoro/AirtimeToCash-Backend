@@ -15,8 +15,9 @@ exports.createUserSchema = joi_1.default.object()
     avatar: joi_1.default.string(),
     isVerified: joi_1.default.boolean(),
     password: joi_1.default.string()
-        .regex(/^[a-zA-Z0-9]{3,30}$/)
-        .required(),
+        // .regex(/^[a-zA-Z0-9]{3,30}$/)
+        .required()
+        .min(4),
     phoneNumber: joi_1.default.string()
         .length(11)
         .pattern(/^[0-9]+$/)

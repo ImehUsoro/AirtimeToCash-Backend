@@ -69,7 +69,7 @@ async function withdraw(req, res) {
             narration: 'Airtime to Cash Payment',
             currency: 'NGN',
             //reference: generateTransactionReference(),
-            callback_url: 'https://webhook.site/b3e505b0-fe02-430e-a538-22bbbce8ce0d',
+            // callback_url: 'https://webhook.site/b3e505b0-fe02-430e-a538-22bbbce8ce0d',
             debit_currency: 'NGN',
         };
         // eslint-disable-next-line no-console
